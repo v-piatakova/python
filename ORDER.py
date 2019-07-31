@@ -27,17 +27,17 @@ def getMenu():
 def adminInterface():
     getMenu()
     while True:
-        f= input('your changes: \nadd pizza\nadd drink\nadd NO\n')
+        f= input('your changes: \nadd pizza\nadd drink\nadd no\n')
         fileName = f
         if f == 'pizza':
-            edit(PIZZES, fileName)
+            Changes(PIZZES, fileName)
         elif f == 'drink':
-            edit(DRINKS, fileName)
+            Changes(DRINKS, fileName)
         elif f == 'no':
             break
 
 
-def edit(field, fileName):
+def Changes(field, fileName):
     dish = input("your dish: ")
     cost = input("it's cost: ")
     field[dish] = int(cost)
@@ -56,14 +56,12 @@ def simpleUserInterface():
         if order in DRINKS: check += DRINKS[order]
 
         order = input('Thats all yes/1 more ')
-        if order == '1 more':
+        if order == 'no':
             continue
         elif order == 'yes':
             break          
     print('To pay: %d ' % check)
     return check
-
-
 if __name__ == "__main__":
     userList = auth()
     if isAdmin(userList['login'], userList['password']):
