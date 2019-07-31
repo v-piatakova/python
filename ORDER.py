@@ -4,36 +4,34 @@ PIZZES = {}
 DRINKS = {}
 MENU = [PIZZES, DRINKS]
 
-def isAdmin(login, password):
-    return login == LOGIN_ADMIN and password == PASSWORD_ADMIN
-
-
 def auth():
     login = input("login")
     password = input("password")
     return {'login': login, 'password':password}
 
+def Admin(login, password):
+    return login == LOGIN_ADMIN and password == PASSWORD_ADMIN
 
-def getMenu():
-    print('menu')
-    h= open('pizza.txt')
-    print(h.read())
-    h.close()
-    h = open('drink.txt')
-    print(h.read())
-    h.close()
+def Menu():
+    pizza= open('pizza.txt')
+    print(pizza.read())
+    pizza.close()
+    drink= open('drink.txt')
+    print(drink.read())
+    drink.close()
    
 
 def adminInterface():
-    getMenu()
+    Menu()
     while True:
-        f= input('your changes: \nadd pizza\nadd drink\nadd no\n')
+        print("Your changes")
+        f= input( '\nadd pizza\nadd drink\nadd nothing\n')
         fileName = f
         if f == 'pizza':
             Changes(PIZZES, fileName)
         elif f == 'drink':
             Changes(DRINKS, fileName)
-        elif f == 'no':
+        elif f == 'nothing':
             break
 
 
@@ -42,29 +40,35 @@ def Changes(tipe,file):
     cost = input("it's cost: ")
     tipe[dish] = int(cost)
     f = open(file + '.txt', 'a')
-    f.write('\n'+dish +'\n'+ cost)
+    f.write('\n'+dish +' '+ cost)
     f.close()
 
 
-def simpleUserInterface():
-    check = 0
-    getMenu()
-    while True:
-        g=input('Welcom to our restaurant!')
-        order = input('Please create your order ')
-        if order in PIZZES: check += PIZZES[order]
-        if order in DRINKS: check += DRINKS[order]
+def UserInterface():
 
-        order = input('Thats all yes/1 more ')
-        if order == 'no':
+    sum = 0
+    Menu()
+    while True:
+        order = input('Please create your order ')
+        if order in PIZZES: 
+            sum += PIZZES[order]
+        if order in DRINKS: 
+            sum += DRINKS[order]
+
+        order = input('something else?  yes/no')
+        if order == 'yes':
             continue
-        elif order == 'yes':
-            break          
-    print('To pay: %d ' % check)
-    return check
+        else:
+            break
+
+    print('To pay: %d ' % sum)
+    return sum
+
 if __name__ == "__main__":
     userList = auth()
-    if isAdmin(userList['login'], userList['password']):
+    if Admin(userList['login'], userList['password']):
         adminInterface()
     else:
-        simpleUserInterface()
+        UserInterface()
+
+input()
