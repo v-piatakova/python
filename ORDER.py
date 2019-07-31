@@ -19,6 +19,7 @@ def Admin(login, password):
     return login == LOGIN_ADMIN and password == PASSWORD_ADMIN
 
 def Menu():
+    print(Back.GREEN)
     pizza= open('pizza.txt')
     print(pizza.read())
     pizza.close()
@@ -41,6 +42,8 @@ def adminInterface():
             Changes(DRINKS, fileName)
         elif f == 'nothing':
             break
+        else:
+            break    
 
 
 def Changes(tipe,file):
