@@ -37,12 +37,12 @@ def adminInterface():
             break
 
 
-def Changes(field, fileName):
+def Changes(tipe,file):
     dish = input("your dish: ")
     cost = input("it's cost: ")
-    field[dish] = int(cost)
-    f = open(fileName + '.txt', 'a')
-    f.write('\n'+dish +' '+ cost)
+    tipe[dish] = int(cost)
+    f = open(file + '.txt', 'a')
+    f.write('\n'+dish +'\n'+ cost)
     f.close()
 
 
