@@ -1,0 +1,6 @@
+drinks price:
+water 5
+wine 20
+whiskey 50
+tea 10
+coffee 12
