@@ -1,3 +1,9 @@
+from colorama import Fore, Back, Style
+from colorama import init
+init()
+print(Fore.BLACK)
+print(Back.YELLOW)
+
 LOGIN_ADMIN = "admin"
 PASSWORD_ADMIN = "admin"
 PIZZES = {}
@@ -24,7 +30,9 @@ def Menu():
 def adminInterface():
     Menu()
     while True:
-        print("Your changes")
+        print(Back.MAGENTA)
+        print( "Your changes")
+
         f= input( '\nadd pizza\nadd drink\nadd nothing\n')
         fileName = f
         if f == 'pizza':
@@ -45,7 +53,7 @@ def Changes(tipe,file):
 
 
 def UserInterface():
-
+    print(Back.CYAN)
     sum = 0
     Menu()
     while True:
@@ -54,6 +62,8 @@ def UserInterface():
             sum += PIZZES[order]
         if order in DRINKS: 
             sum += DRINKS[order]
+        else:
+            break    
 
         order = input('something else?  yes/no')
         if order == 'yes':
