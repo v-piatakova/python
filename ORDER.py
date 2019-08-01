@@ -78,8 +78,8 @@ def UserInterface():
     return sum
 
 if __name__ == "__main__":
-    userList = auth()
-    if Admin(userList['login'], userList['password']):
+    user = auth()
+    if Admin(user['login'], user['password']):
         adminInterface()
     else:
         UserInterface()
